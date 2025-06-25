@@ -9,7 +9,7 @@ public class OpenRouterClient
     private readonly HttpClient _httpClient;
     private readonly string _model;
 
-    public OpenRouterClient(string apiKey, string referer, string model = "anthropic/claude-3-sonnet")
+    public OpenRouterClient(string apiKey, string referer, string model)
     {
         _httpClient = new HttpClient
         {

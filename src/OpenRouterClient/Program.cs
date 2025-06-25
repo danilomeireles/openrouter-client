@@ -13,7 +13,7 @@ static class Program
         
         var apiKey = config["OpenRouter:ApiKey"]!;
         var referer = config["OpenRouter:Referer"]!;
-        var client = new OpenRouterClient(apiKey, referer);
+        var client = new OpenRouterClient(apiKey, referer, OpenRouterModels.Anthropic.Claude3Sonnet);
 
         Console.WriteLine("OpenRouter Console Client");
         Console.WriteLine("Type your prompt below (type 'exit' to quit):");
