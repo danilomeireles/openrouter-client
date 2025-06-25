@@ -7,9 +7,9 @@ namespace OpenRouterClient;
 public class OpenRouterClient
 {
     private readonly HttpClient _httpClient;
-    private const string Model = "anthropic/claude-3-sonnet";
+    private readonly string _model;
 
-    public OpenRouterClient(string apiKey, string referer)
+    public OpenRouterClient(string apiKey, string referer, string model = "anthropic/claude-3-sonnet")
     {
         _httpClient = new HttpClient
         {
@@ -19,13 +19,15 @@ public class OpenRouterClient
         _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
         _httpClient.DefaultRequestHeaders.Add("HTTP-Referer", referer);
         _httpClient.DefaultRequestHeaders.Add("X-Title", "Console App");
+        
+        _model = model;
     }
 
     public async Task<string> SendPromptAsync(string prompt)
     {
         var request = new
         {
-            model = Model,
+            model = _model,
             messages = new[]
             {
                 new { role = "user", content = prompt }
